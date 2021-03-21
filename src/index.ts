@@ -21,20 +21,19 @@ const upload = async (subscriber: any) => {
 
     const txs = [];
     for (const id of block.transactions) {
-      const tx = await client.eth.getTransaction(id)
-      
+      const tx = await client.eth.getTransaction(id);
+
       txs.push(tx);
-      tags.push({ name: "Transaction", value: tx.hash })
+      tags.push({ name: "Transaction", value: tx.hash });
     }
     // @ts-ignore
     block.transactions = txs;
 
     subscriber.next({ data: block, tags });
   });
-}
+};
 
-const validate = async (subscriber: any) => {
-}
+const validate = async (subscriber: any) => {};
 
 const instance = new KYVE(upload, validate, {
   pool,
