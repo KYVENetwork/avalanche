@@ -2,10 +2,22 @@ import fs from "fs";
 import Web3 from "web3";
 import KYVE from "@kyve/logic";
 
+import { all } from "ar-gql";
+import Arweave from "arweave";
+import uploadQuery from "./upload";
+import hash from "object-hash";
+
+const arweave = new Arweave({
+  host: "arweave.net",
+  port: 443,
+  protocol: "https",
+});
+
 // TODO: Don't harcode the following constants!!!
 const pool = "Avalanche: C-Chain";
 const jwk = JSON.parse(fs.readFileSync("./arweave.json").toString());
 const endpoint = "wss://api.avax.network/ext/bc/C/ws";
+const uploader = "3dX8Cnz3N64nKt2EKmWpKL1EbErFP3RFjxSDyQHQrkI";
 
 const upload = async (subscriber: any) => {
   const client = new Web3(new Web3.providers.WebsocketProvider(endpoint));
@@ -33,6 +45,8 @@ const upload = async (subscriber: any) => {
 };
 
 const validate = async (subscriber: any) => {
+  const client = new Web3(new Web3.providers.WebsocketProvider(endpoint));
+
   const main = async (
     latestArweaveBlock: number,
     latestArweaveTx: string = ""
@@ -65,7 +79,6 @@ const validate = async (subscriber: any) => {
         const tx = await client.eth.getTransaction(id);
 
         txs.push(tx);
-        tags.push({ name: "Transaction", value: tx.hash });
       }
       // @ts-ignore
       block.transactions = txs;
@@ -73,7 +86,7 @@ const validate = async (subscriber: any) => {
       const localHash = hash(block);
 
       // get tx data from uploader
-      const data = await client.transactions.getData(id, {
+      const data = await arweave.transactions.getData(id, {
         decode: true,
         string: true,
       });
@@ -88,7 +101,7 @@ const validate = async (subscriber: any) => {
     setTimeout(main, 5000, latestArweaveBlock, latestArweaveTx);
   };
 
-  await main((await client.network.getInfo()).height);
+  await main((await arweave.network.getInfo()).height);
 };
 
 const instance = new KYVE(upload, validate, {
