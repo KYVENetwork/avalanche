@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node dist/index.js",
+    "start:docker": "node dist/index.js",
     "fmt": "prettier --write ."
   },
   "dependencies": {
