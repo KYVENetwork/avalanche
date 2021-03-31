@@ -1,19 +1,12 @@
-import Arweave from "arweave";
 import {
   UploadFunctionSubscriber,
   ListenFunctionObservable,
   ValidateFunctionSubscriber,
 } from "@kyve/logic/dist/faces";
 import Web3 from "web3";
-import KYVE from "@kyve/logic";
+import KYVE, { getData } from "@kyve/logic";
 import hash from "object-hash";
 import { JWKInterface } from "arweave/node/lib/wallet";
-
-const arweave = new Arweave({
-  host: "arweave.net",
-  port: 443,
-  protocol: "https",
-});
 
 const upload = async (uploader: UploadFunctionSubscriber, config: any) => {
   const client = new Web3(
@@ -65,10 +58,7 @@ const validate = async (
     const localHash = hash(block);
 
     // get tx data from uploader
-    const data = await arweave.transactions.getData(res.id, {
-      decode: true,
-      string: true,
-    });
+    const data = await getData(res.id);
     const compareHash = hash(JSON.parse(data.toString()));
 
     validator.next({ valid: localHash === compareHash, id: res.id });
