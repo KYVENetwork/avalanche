@@ -176,11 +176,12 @@
     "@ethersproject/properties" "^5.0.7"
     "@ethersproject/strings" "^5.0.8"
 
-"@kyve/logic@^0.0.0-alpha":
-  version "0.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/@kyve/logic/-/logic-0.0.0-alpha.tgz#26c943c3baf7332f4449182f570cb64d5e47841e"
-  integrity sha512-MvKrdokHZ7p2B7rMafgEnkxza87N9jANVDRTrivo8I6vnNJcJmCl58Jt1L/KpkdxnFVHMkJ7rK5+U0gD9/IrGQ==
+"@kyve/logic@^0.0.0-alpha.5":
+  version "0.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@kyve/logic/-/logic-0.0.0-alpha.5.tgz#1fb0fb8deb2ba83ee9adbf70c6e4078fea1d356e"
+  integrity sha512-EOwwME1lpBNtEU209vEazPMrCxgJPfGKdtrK6QKnqSG0EvIPhmyC6SAvPopfo+mXrpKXWLlaOXFbrcDN0mt2Kw==
   dependencies:
+    ardb "^1.0.4"
     arweave "^1.10.11"
     arweave-bundles "^1.0.3"
     rxjs "^6.6.6"
@@ -310,12 +311,12 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     sylvester ">= 0.0.8"
 
-ar-gql@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/ar-gql/-/ar-gql-0.0.6.tgz#ebb313195c092f27a997440a2835060feaf8df81"
-  integrity sha512-eXKsXGQcx8uwxwlFJzBXA17Qsg+Gty6tcp85IB5SX1iop7NsXLQ/iH2WEz69NCz2/Zcb81C1QryIiNTgw0/4aA==
+ardb@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ardb/-/ardb-1.0.4.tgz#13c2e63b568641bbfae06221b1928d3c0a1246bd"
+  integrity sha512-GFjow1MskQ92baMZKuwZ4PVNDB4LFK5ZbSdmA+pq34TORlY3Kr9/nEmpiwmtMlObZUqzbhL4BVhVlCKg0bBLiA==
   dependencies:
-    axios "^0.21.1"
+    arweave "^1.10.11"
 
 array-filter@^1.0.0:
   version "1.0.0"
