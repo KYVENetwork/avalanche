@@ -1,7 +1,7 @@
 {
   "name": "@kyve/avalanche",
   "description": "The official KYVE node for Avalanche",
-  "version": "0.0.0-alpha.1",
+  "version": "0.0.0-alpha.2",
   "author": "John Letey <john@kyve.network>, Fabian Riewe <fabian@kyve.network>",
   "repository": "https://github.com/KYVENetwork/avalanche",
   "license": "MIT",

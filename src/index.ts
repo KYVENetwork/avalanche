@@ -1,5 +1,4 @@
 import Arweave from "arweave";
-import fs from "fs";
 import {
   UploadFunctionSubscriber,
   ListenFunctionObservable,
@@ -8,6 +7,7 @@ import {
 import Web3 from "web3";
 import KYVE from "@kyve/logic";
 import hash from "object-hash";
+import { JWKInterface } from "arweave/node/lib/wallet";
 
 const arweave = new Arweave({
   host: "arweave.net",
@@ -15,11 +15,7 @@ const arweave = new Arweave({
   protocol: "https",
 });
 
-// TODO: Don't harcode the following constants!!!
-const pool = "Avalanche // C-Chain";
-const jwk = JSON.parse(fs.readFileSync("./arweave.json").toString());
-
-const upload = async (subscriber: UploadFunctionSubscriber, config: any) => {
+const upload = async (uploader: UploadFunctionSubscriber, config: any) => {
   const client = new Web3(
     new Web3.providers.WebsocketProvider(config.endpoint)
   );
@@ -36,13 +32,13 @@ const upload = async (subscriber: UploadFunctionSubscriber, config: any) => {
       tags.push({ name: "Transaction", value: transaction.hash })
     );
 
-    subscriber.next({ data: block, tags });
+    uploader.next({ data: block, tags });
   });
 };
 
 const validate = async (
   listener: ListenFunctionObservable,
-  subscriber: ValidateFunctionSubscriber,
+  validator: ValidateFunctionSubscriber,
   config: any
 ) => {
   const client = new Web3(
@@ -75,21 +71,19 @@ const validate = async (
     });
     const compareHash = hash(JSON.parse(data.toString()));
 
-    subscriber.next({ valid: localHash === compareHash, id: res.id });
+    validator.next({ valid: localHash === compareHash, id: res.id });
   });
 };
 
-const instance = new KYVE(
-  {
-    pool,
-    jwk,
-  },
-  upload,
-  validate
-);
+export default function main(pool: string, jwk: JWKInterface) {
+  const instance = new KYVE(
+    {
+      pool,
+      jwk,
+    },
+    upload,
+    validate
+  );
 
-(async () => {
-  await instance.run();
-})();
-
-export default instance;
+  return instance;
+}

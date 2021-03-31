@@ -12,8 +12,8 @@ The KYVE + Avalanche node allows you to bridge any data stream from an Avalanche
 
 ## Usage
 
-### Run the node locally
+```js
+import AvalancheInstance from "@kyve/avalanche";
 
-1. Clone the repo.
-2. Copy or create a new Arweave keyfile into the repo and rename it to `arweave.json`.
-3. To run the node, execute `yarn start`.
+AvalancheInstance("Avalanche // C-Chain", jwk).run();
+```
