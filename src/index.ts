@@ -4,8 +4,8 @@ import {
   ValidateFunctionSubscriber,
 } from "@kyve/logic/dist/faces";
 import Web3 from "web3";
-import KYVE, { getData } from "@kyve/logic";
 import hash from "object-hash";
+import KYVE, { getData } from "@kyve/logic";
 import { JWKInterface } from "arweave/node/lib/wallet";
 
 const upload = async (uploader: UploadFunctionSubscriber, config: any) => {
@@ -43,21 +43,9 @@ const validate = async (
       res.transaction.tags.find((tag) => tag.name === "Height")?.value!
     );
 
-    // get block and prepare it
-    let block = await client.eth.getBlock(height);
-
-    const txs = [];
-    for (const id of block.transactions) {
-      const tx = await client.eth.getTransaction(id);
-
-      txs.push(tx);
-    }
-    // @ts-ignore
-    block.transactions = txs;
-    // create a hash of the local block
+    const block = await client.eth.getBlock(height, true);
     const localHash = hash(block);
 
-    // get tx data from uploader
     const data = await getData(res.id);
     const compareHash = hash(JSON.parse(data.toString()));
 
