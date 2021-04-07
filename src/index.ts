@@ -38,11 +38,7 @@ const validate = async (
     new Web3.providers.WebsocketProvider(config.endpoint)
   );
 
-  console.log("... outside the listener ...");
-
   listener.subscribe(async (res) => {
-    console.log(res);
-
     const height = parseFloat(
       res.transaction.tags.find((tag) => tag.name === "Height")?.value!
     );

@@ -177,10 +177,10 @@
     "@ethersproject/properties" "^5.1.0"
     "@ethersproject/strings" "^5.1.0"
 
-"@kyve/logic@^0.0.0-alpha.12":
-  version "0.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@kyve/logic/-/logic-0.0.0-alpha.12.tgz#320d2e47938ea6992c3be54839dd26577b15374e"
-  integrity sha512-PAy5WInt4gbgqEeeAGa1+Mhra7U/MpYArVtDw/gBL4YV40H1xfHP+8tZpoqqLpJaX9kEWnosojvbvMINWVpEbw==
+"@kyve/logic@^0.0.0-alpha.14":
+  version "0.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@kyve/logic/-/logic-0.0.0-alpha.14.tgz#b44c92cb9049dfc524ddaf5b3f0b8d44f63b4a11"
+  integrity sha512-TijpGvj417bO3l185Qor8zZmZUk9n0x9BFeDxzzvDce2mOnP6Nu9lvytuSjfLwnnKw0IJb+sVsgMPnifYLMxlg==
   dependencies:
     ardb "^1.0.4"
     arweave "^1.10.11"
