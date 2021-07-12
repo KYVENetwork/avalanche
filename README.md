@@ -6,14 +6,4 @@
   <p align="center">The official KYVE node for Avalanche.</p>
 </p>
 
-## About
-
-The KYVE + Avalanche node allows you to bridge any data stream from an Avalanche chain onto Arweave.
-
-## Usage
-
-```js
-import AvalancheInstance from "@kyve/avalanche";
-
-AvalancheInstance("Avalanche // C-Chain", jwk).run();
-```
+This repository got moved to: https://github.com/KYVENetwork/kyve/tree/master/integrations
